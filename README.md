@@ -114,6 +114,11 @@ Synchronized -> DB Lock(Pessimistic, Optimistic) -> Redis 분산 Lock (Lettuce, 
 
 
 > **개선 결과** : 137 ms -> 20 ms 약 7배 속도 개선
+
+## 🔗 더 자세한 내용 보기
+
+[📌 조금 더 상세한 내용이 궁금하다면?](https://onthewater.tistory.com/13)
+
   <hr>
 </details>
 <details>
