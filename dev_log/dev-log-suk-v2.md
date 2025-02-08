@@ -9,7 +9,7 @@
     * [3. V1-2: `Redis`를 이용한 캐싱 전략 1](#3-v1-2-redis를-이용한-캐싱-전략-1)
     * [4. V1-3: `Spring-Cache`와 `Redis` 캐싱 방법](#4-v1-3-spring-cache와-redis-캐싱-방법)
         + [4.1 `@Cacheable`을 이용한 랭킹 리스트 캐싱](#41-cacheable을-이용한-랭킹-리스트-캐싱)
-        + [4.2 `@Cachable`과 `@CachePut`을 활용한 조회수 어뷰징 관리](#42-cachable과-cacheput을-활용한-조회수-어뷰징-관리)
+        + [4.2 `@Cachable`과 `@CachePut`을 활용한 조회수 어뷰징 관리](#42-cachable과-cacheput을-조회수-어뷰징-관리)
     * [5. V1의 문제점](#5-v1의-문제점)
     * [6. V2: `Redis`를 이용한 캐싱 전략 2](#6-v2-redis를-이용한-캐싱-전략-2)
         + [6.1 List -> Sorted Set](#61-list---sorted-set)
@@ -115,7 +115,7 @@
 
 ---
 
-### <u> 4.1 `@Cacheable`을 이용한 랭킹 리스트 캐싱</u>
+### 4.1 `@Cacheable`을 이용한 랭킹 리스트 캐싱
 
 `Spring-Cache`와 `Redis`를 이용한 캐싱 방법 모두, 캐싱을 하기 위한 수단으로서 `@Cacheable`을 사용했다.
 
@@ -142,7 +142,7 @@
 
 ---
 
-### <u>4.2 `@Cachable`과 `@CachePut`을 조회수 어뷰징 관리</u>
+### 4.2 `@Cachable`과 `@CachePut`을 조회수 어뷰징 관리
 
 현재 프로젝트에서는 특정 쇼핑몰을 조회할 때마다 `viewCount` 를 증가시키는데, 이때 여뷰징 방지를 위해 5분 이내 재조회시 카운팅을 시키지 않게끔 로직을 작성했다. 이번 프로젝트에서는 인증, 인가가 따로 구성되어 있지 않기 위해서 사용자를 IP로 구분했다. 스프링 `HttpServletRequest`에서 제공하는 ip address값과 쇼핑몰 id 값을 조합해 키값으로 활용해, 5분간 캐시하고 조회 이력이 캐시에 존재하면 조회수는 증가하지 않는다. 아래는 `Redis`에 저장된 이력 정보다.
 
